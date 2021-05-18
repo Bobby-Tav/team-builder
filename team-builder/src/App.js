@@ -1,11 +1,21 @@
+import React, {useState} from 'react';
+import Form from './components/Form'
 import logo from './logo.svg';
+
 import './App.css';
 
 function App() {
+  //States
+  const[teamMember,setTeamMember] = useState('');
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+       <Form name={null} email={null} role={null}/>
+       
+       
+       
+        {/* <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
@@ -16,7 +26,7 @@ function App() {
           rel="noopener noreferrer"
         >
           Learn React
-        </a>
+        </a> */}
       </header>
     </div>
   );
