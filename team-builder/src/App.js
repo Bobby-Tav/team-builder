@@ -1,30 +1,50 @@
 import React, {useState} from 'react';
 import Form from './components/Form'
+import Member from './components/member'
 
 
 import './App.css';
 
-const initialFormValue = {name:'',email:'',role:'',}
+const list=[{name:'dsfdaf', email:"afsdf", role:"dfsg"},
+{name:'dsfdaf', email:"afsdf", role:"dfsg"},
+{name:'dsfdaf', email:"afsdf", role:"dfsg"}]
 
-function App() {
+const initialFormValues = {name:'', email:'', role:''}
+export default function App() {
   //States
-  const[teamMember,setTeamMember] = useState([]);
-  const[formValues,setFormValues] =useState(initialFormValue);
+  const[teamMembers,setTeamMembers] = useState([])
+  const[formValues,setFormValues] =useState(initialFormValues)
   
   //Function to Update and submit
-  const updateForm = (inputName, inputValue) => {
+  const updateForm = (name, value) =>{
 
-    setFormValues({...teamMember,[inputName]: inputValue})
+    setFormValues({ ...formValues, [name]: value})
+  }
+
+  const submitForm = () =>{
+    const newMember = {
+      name: formValues.name.trim(),
+      email: formValues.email.trim(),
+
+    }
+    setTeamMembers([...teamMembers, newMember])
+    setFormValues(initialFormValues)
   }
 
   return (
     <div className="App">
       <header className="App-header">
-       <Form values={formValues} update={updateForm} />
+      
+      {teamMembers.map((member, idx) => {
+        return (
+          <div key={idx}>
+            {member.name} is a {member.email}
+          </div>
+        )
+      })}
+      <Form update={updateForm} submit={submitForm} values ={formValues} />
 
       </header>
     </div>
   );
 }
-
-export default App;

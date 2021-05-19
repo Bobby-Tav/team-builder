@@ -3,30 +3,46 @@ import React from 'react';
 
 
 export default function Form(props){
-        const {values,update} = props;
+        const {values, update, submit} = props
 
-const onChange= (evt) =>{
-    const {name,value} = evt.target;
-    update(name,value);
-}
+        const onChange = (evt) =>{
+            const {name, value} = evt.target
+            update(name,value);
+        }
+        const onSubmit = (event) =>{
+            event.preventDefault()
+            submit()
+        }
+
 
     return(
-        <form ClassName='container'>
-            <label>Name:
-                <input type='text' name='name' value={values.name} onChange={onChange}></input>
-            </label>
-            <label>Email:
-                <input type='email' name='email' value={values.email} onChange={onChange}></input>
-            </label>
-            <label>Role
-                <select>
-                    <option value=''></option>
-                    <option value=''></option>
-                    <option value=''></option>
-                    <option value=''></option>
+        <div className ="container">
+            <form onSubmit={onSubmit}>
+                <label>Name:
+                <input
+                type='text'
+                name='name'
+                onChange={onChange}
+                value={values.name}
+                />
+                </label>
+
+                <label>Email:
+                <input 
+                type='email' 
+                name='email' 
+                onChange={onChange} 
+                value={values.email}
+                />
+                </label>Role:
+                <select name='role' value={values.role} onChange={onChange}>
+                    <option value=''>-</option>
+                    <option value='frontend'>frontend</option>
+                    <option value='backend'>backend</option>
+                    <option value='test'>test</option>
                 </select>
-            </label>
-            <button>Submit</button>
-        </form>
+                <button disabled={!values.name || !values.email || !values.role}>Submit</button>
+            </form>
+        </div>
     )
 }
