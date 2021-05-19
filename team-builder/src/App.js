@@ -1,32 +1,27 @@
 import React, {useState} from 'react';
 import Form from './components/Form'
-import logo from './logo.svg';
+
 
 import './App.css';
 
+const initialFormValue = {name:'',email:'',role:'',}
+
 function App() {
   //States
-  const[teamMember,setTeamMember] = useState('');
+  const[teamMember,setTeamMember] = useState([]);
+  const[formValues,setFormValues] =useState(initialFormValue);
+  
+  //Function to Update and submit
+  const updateForm = (inputName, inputValue) => {
+
+    setFormValues({...teamMember,[inputName]: inputValue})
+  }
 
   return (
     <div className="App">
       <header className="App-header">
-       <Form name={null} email={null} role={null}/>
-       
-       
-       
-        {/* <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a> */}
+       <Form values={formValues} update={updateForm} />
+
       </header>
     </div>
   );
