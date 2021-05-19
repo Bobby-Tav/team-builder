@@ -25,6 +25,7 @@ export default function App() {
     const newMember = {
       name: formValues.name.trim(),
       email: formValues.email.trim(),
+      role: formValues.role, 
 
     }
     setTeamMembers([...teamMembers, newMember])
@@ -38,7 +39,8 @@ export default function App() {
       {teamMembers.map((member, idx) => {
         return (
           <div key={idx}>
-            {member.name} is a {member.email}
+            {console.log(member)}
+            <Member details={member} />
           </div>
         )
       })}
